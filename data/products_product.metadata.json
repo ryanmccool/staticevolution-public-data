@@ -11,7 +11,8 @@
         "status",
         "featured",
         "meta_description",
-        "redirect_to_id"
+        "redirect_to_id",
+        "search_document"
     ],
-    "schema": "CREATE TABLE \"products_product\" (\n   \"id\" INTEGER,\n   \"name\" TEXT,\n   \"slug\" TEXT,\n   \"summary\" TEXT,\n   \"body\" TEXT,\n   \"platform_links\" TEXT,\n   \"support_url\" TEXT,\n   \"status\" TEXT,\n   \"featured\" INTEGER,\n   \"meta_description\" TEXT,\n   \"redirect_to_id\" INTEGER REFERENCES \"products_product\"(\"id\")\n)"
+    "schema": "CREATE TABLE \"products_product\" (\n   \"id\" INTEGER PRIMARY KEY,\n   \"name\" TEXT,\n   \"slug\" TEXT,\n   \"summary\" TEXT,\n   \"body\" TEXT,\n   \"platform_links\" TEXT,\n   \"support_url\" TEXT,\n   \"status\" TEXT,\n   \"featured\" INTEGER,\n   \"meta_description\" TEXT,\n   \"redirect_to_id\" TEXT REFERENCES \"products_product\"(\"id\"),\n   \"search_document\" TEXT\n)"
 }
