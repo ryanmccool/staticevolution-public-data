@@ -1,0 +1,17 @@
+{
+    "name": "blog_quotation",
+    "columns": [
+        "id",
+        "created",
+        "slug",
+        "metadata",
+        "card_image",
+        "is_draft",
+        "quotation",
+        "source",
+        "source_url",
+        "context",
+        "series_id"
+    ],
+    "schema": "CREATE TABLE \"blog_quotation\" (\n   \"id\" INTEGER,\n   \"created\" TEXT,\n   \"slug\" TEXT,\n   \"metadata\" TEXT,\n   \"card_image\" TEXT,\n   \"is_draft\" INTEGER,\n   \"quotation\" TEXT,\n   \"source\" TEXT,\n   \"source_url\" TEXT,\n   \"context\" TEXT,\n   \"series_id\" INTEGER REFERENCES \"blog_series\"(\"id\")\n)"
+}

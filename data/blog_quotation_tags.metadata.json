@@ -1,0 +1,9 @@
+{
+    "name": "blog_quotation_tags",
+    "columns": [
+        "id",
+        "quotation_id",
+        "tag_id"
+    ],
+    "schema": "CREATE TABLE \"blog_quotation_tags\" (\n   \"id\" INTEGER,\n   \"quotation_id\" INTEGER REFERENCES \"blog_quotation\"(\"id\"),\n   \"tag_id\" INTEGER REFERENCES \"blog_tag\"(\"id\")\n)"
+}

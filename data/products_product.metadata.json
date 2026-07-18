@@ -1,0 +1,17 @@
+{
+    "name": "products_product",
+    "columns": [
+        "id",
+        "name",
+        "slug",
+        "summary",
+        "body",
+        "platform_links",
+        "support_url",
+        "status",
+        "featured",
+        "meta_description",
+        "redirect_to_id"
+    ],
+    "schema": "CREATE TABLE \"products_product\" (\n   \"id\" INTEGER,\n   \"name\" TEXT,\n   \"slug\" TEXT,\n   \"summary\" TEXT,\n   \"body\" TEXT,\n   \"platform_links\" TEXT,\n   \"support_url\" TEXT,\n   \"status\" TEXT,\n   \"featured\" INTEGER,\n   \"meta_description\" TEXT,\n   \"redirect_to_id\" INTEGER REFERENCES \"products_product\"(\"id\")\n)"
+}

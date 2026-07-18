@@ -1,0 +1,12 @@
+{
+    "name": "blog_tagmerge",
+    "columns": [
+        "id",
+        "created",
+        "source_tag_name",
+        "destination_tag_name",
+        "details",
+        "destination_tag_id"
+    ],
+    "schema": "CREATE TABLE \"blog_tagmerge\" (\n   \"id\" INTEGER,\n   \"created\" TEXT,\n   \"source_tag_name\" TEXT,\n   \"destination_tag_name\" TEXT,\n   \"details\" TEXT,\n   \"destination_tag_id\" INTEGER REFERENCES \"blog_tag\"(\"id\")\n)"
+}

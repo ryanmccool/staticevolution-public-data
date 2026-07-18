@@ -1,0 +1,18 @@
+{
+    "name": "blog_elsewhereitem",
+    "columns": [
+        "id",
+        "created",
+        "slug",
+        "metadata",
+        "card_image",
+        "is_draft",
+        "item_type",
+        "external_url",
+        "title",
+        "commentary",
+        "image_url",
+        "series_id"
+    ],
+    "schema": "CREATE TABLE \"blog_elsewhereitem\" (\n   \"id\" INTEGER,\n   \"created\" TEXT,\n   \"slug\" TEXT,\n   \"metadata\" TEXT,\n   \"card_image\" TEXT,\n   \"is_draft\" INTEGER,\n   \"item_type\" TEXT,\n   \"external_url\" TEXT,\n   \"title\" TEXT,\n   \"commentary\" TEXT,\n   \"image_url\" TEXT,\n   \"series_id\" INTEGER REFERENCES \"blog_series\"(\"id\")\n)"
+}

@@ -1,0 +1,13 @@
+{
+    "name": "blog_photoset",
+    "columns": [
+        "id",
+        "created",
+        "title",
+        "description",
+        "slug",
+        "is_draft",
+        "primary_id"
+    ],
+    "schema": "CREATE TABLE \"blog_photoset\" (\n   \"id\" INTEGER,\n   \"created\" TEXT,\n   \"title\" TEXT,\n   \"description\" TEXT,\n   \"slug\" TEXT,\n   \"is_draft\" INTEGER,\n   \"primary_id\" INTEGER REFERENCES \"blog_photo\"(\"id\")\n)"
+}

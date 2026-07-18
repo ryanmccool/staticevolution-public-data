@@ -1,0 +1,14 @@
+{
+    "name": "guides_chapterchange",
+    "columns": [
+        "id",
+        "created",
+        "title",
+        "body",
+        "is_draft",
+        "is_notable",
+        "change_note",
+        "chapter_id"
+    ],
+    "schema": "CREATE TABLE \"guides_chapterchange\" (\n   \"id\" INTEGER,\n   \"created\" TEXT,\n   \"title\" TEXT,\n   \"body\" TEXT,\n   \"is_draft\" INTEGER,\n   \"is_notable\" INTEGER,\n   \"change_note\" TEXT,\n   \"chapter_id\" INTEGER REFERENCES \"guides_chapter\"(\"id\")\n)"
+}

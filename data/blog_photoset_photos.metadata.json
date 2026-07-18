@@ -1,0 +1,9 @@
+{
+    "name": "blog_photoset_photos",
+    "columns": [
+        "id",
+        "photoset_id",
+        "photo_id"
+    ],
+    "schema": "CREATE TABLE \"blog_photoset_photos\" (\n   \"id\" INTEGER,\n   \"photoset_id\" INTEGER REFERENCES \"blog_photoset\"(\"id\"),\n   \"photo_id\" INTEGER REFERENCES \"blog_photo\"(\"id\")\n)"
+}
