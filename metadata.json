@@ -1,0 +1,9 @@
+{
+  "title": "Static Evolution public data",
+  "description": "A read-only public mirror of published content from staticevolution.com",
+  "plugins": {
+    "datasette-auth-passwords": {
+      "admin_password_hash": {"$env": "DATASETTE_ADMIN_PASSWORD_HASH"}
+    }
+  }
+}

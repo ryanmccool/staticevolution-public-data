@@ -1,0 +1,50 @@
+name: Back up Static Evolution public data
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "26 */2 * * *"
+permissions:
+  contents: write
+concurrency:
+  group: public-data-backup
+  cancel-in-progress: false
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Import public tables from PostgreSQL
+        env:
+          SOURCE_DATABASE_URL: ${{ secrets.SOURCE_DATABASE_URL }}
+        run: |
+          set -eu
+          : "${SOURCE_DATABASE_URL:?SOURCE_DATABASE_URL is required}"
+          rm -f staticevolution.db
+          db-to-sqlite "$SOURCE_DATABASE_URL" staticevolution.db \
+            --table blog_tag --table blog_previoustagname --table blog_tagmerge --table blog_series \
+            --table blog_entry --table blog_entry_tags --table blog_blogmark --table blog_blogmark_tags \
+            --table blog_quotation --table blog_quotation_tags --table blog_note --table blog_note_tags \
+            --table blog_elsewhereitem --table blog_elsewhereitem_tags \
+            --table blog_photo --table blog_photoset --table blog_photoset_photos \
+            --table guides_guide --table guides_guidesection --table guides_chapter \
+            --table guides_chapter_tags --table guides_chapterchange \
+            --table pages_page --table products_product
+          python sanitize.py staticevolution.db
+      - name: Convert to diffable JSON and scan for private data
+        run: |
+          rm -rf data
+          sqlite-diffable dump staticevolution.db data --all
+          ! grep -R -E 'auth_user|django_admin_log|django_session|is_draft[^0-9]*1' data
+      - name: Commit changes
+        run: |
+          git config user.name "Static Evolution backup bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -m "Latest public data: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git push
