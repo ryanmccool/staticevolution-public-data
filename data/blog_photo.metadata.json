@@ -4,12 +4,12 @@
         "id",
         "created",
         "title",
-        "image",
         "alt_text",
         "caption",
         "width",
         "height",
-        "is_draft"
+        "is_draft",
+        "public_url"
     ],
-    "schema": "CREATE TABLE \"blog_photo\" (\n   \"id\" INTEGER,\n   \"created\" TEXT,\n   \"title\" TEXT,\n   \"image\" TEXT,\n   \"alt_text\" TEXT,\n   \"caption\" TEXT,\n   \"width\" INTEGER,\n   \"height\" INTEGER,\n   \"is_draft\" INTEGER\n)"
+    "schema": "CREATE TABLE \"blog_photo\" (\n   \"id\" INTEGER,\n   \"created\" TEXT,\n   \"title\" TEXT,\n   \"alt_text\" TEXT,\n   \"caption\" TEXT,\n   \"width\" INTEGER,\n   \"height\" INTEGER,\n   \"is_draft\" INTEGER\n, public_url text)"
 }
