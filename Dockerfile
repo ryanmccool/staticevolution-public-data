@@ -12,4 +12,4 @@ COPY build_database.py metadata.json ./
 COPY data ./data
 RUN python build_database.py
 
-CMD ["sh", "-c", "datasette serve --host 0.0.0.0 --port ${PORT} --metadata metadata.json --immutable staticevolution.db --setting allow_download off --setting allow_facet on --setting sql_time_limit_ms 5000"]
+CMD ["sh", "-c", "datasette serve --host 0.0.0.0 --port ${PORT} --metadata metadata.json --secret ${DATASETTE_SECRET} --immutable staticevolution.db --setting allow_download off --setting allow_facet on --setting sql_time_limit_ms 5000"]

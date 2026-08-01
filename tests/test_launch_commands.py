@@ -17,6 +17,7 @@ class LaunchCommandTests(unittest.TestCase):
         railway_deploy = json.loads((ROOT / "railway.json").read_text())["deploy"]
 
         self.assertIn(f"--immutable {DATABASE}", docker_cmd)
+        self.assertIn("--secret ${DATASETTE_SECRET}", docker_cmd)
         self.assertEqual(docker_cmd.count(DATABASE), 1)
         self.assertNotIn("startCommand", railway_deploy)
 

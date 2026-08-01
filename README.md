@@ -18,7 +18,7 @@ DATABASE_URL=postgresql://… .venv/bin/python export.py
 
 ## Datasette
 
-`build_database.py` rebuilds `staticevolution.db` from the committed snapshot when the container starts. Railway serves that immutable database through Datasette. Anonymous access is read-only. Private root access uses the password hash in `DATASETTE_ADMIN_PASSWORD_HASH`; the plaintext password is not stored in this repository or Railway.
+`build_database.py` rebuilds `staticevolution.db` from the committed snapshot when the container starts. Railway serves that immutable database through Datasette. Anonymous access is read-only. `DATASETTE_SECRET` keeps signed sessions stable across deployments. Private root access uses the password hash in `DATASETTE_ADMIN_PASSWORD_HASH`; the plaintext password is not stored in this repository or Railway.
 
 This public mirror is not a complete private backup. Production recovery still depends on Railway PostgreSQL backups and private media-bucket recovery procedures.
 
