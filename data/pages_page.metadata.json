@@ -5,9 +5,7 @@
         "title",
         "slug",
         "body",
-        "status",
-        "meta_description",
-        "search_document"
+        "meta_description"
     ],
-    "schema": "CREATE TABLE \"pages_page\" (\n   \"id\" INTEGER PRIMARY KEY,\n   \"title\" TEXT,\n   \"slug\" TEXT,\n   \"body\" TEXT,\n   \"status\" TEXT,\n   \"meta_description\" TEXT,\n   \"search_document\" TEXT\n)"
+    "schema": "CREATE TABLE [pages_page] (\n   [id] INTEGER PRIMARY KEY,\n   [title] TEXT,\n   [slug] TEXT,\n   [body] TEXT,\n   [meta_description] TEXT\n)"
 }

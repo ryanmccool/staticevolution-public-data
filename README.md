@@ -1,7 +1,29 @@
 # Static Evolution public data
 
-This public repository mirrors published content from [staticevolution.com](https://staticevolution.com), following the backup/Datasette architecture of Simon Willison's blog.
+This repository is the canonical public, read-only data mirror for [Static Evolution](https://staticevolution.com/). A scheduled GitHub Actions workflow exports the published subset of the production PostgreSQL database, writes deterministic `sqlite-diffable` files under `data/`, and commits only changed public data.
 
-The scheduled workflow reads the production PostgreSQL database, selects publishing tables, removes drafts, future/unlisted content and operational fields, and stores a diffable JSON history under `data/`. Railway builds an immutable, public read-only Datasette instance from that history.
+The export includes published Entries, Links, Quotes, Notes, tags, guides and Chapters, photo metadata, Pages, and Products. It excludes drafts, scheduled and unlisted content, users, sessions, permissions, admin and API audit data, credentials, private storage details, search vectors, and importer references. `test_export.py` enforces that boundary before each export.
 
-No users, permissions, admin logs, sessions, credentials, private bucket keys or draft records belong in this repository.
+## Local verification
+
+```sh
+python -m venv .venv
+.venv/bin/pip install --require-hashes --requirement requirements.txt
+.venv/bin/python -m unittest
+DATABASE_URL=postgresql://… .venv/bin/python export.py
+.venv/bin/sqlite-diffable dump staticevolution.db data --all
+```
+
+`DATABASE_URL` must point to a read-only production connection. Never commit or print it.
+
+## Datasette
+
+`build_database.py` rebuilds `staticevolution.db` from the committed snapshot when the container starts. Railway serves that immutable database through Datasette. Anonymous access is read-only. Private root access uses the password hash in `DATASETTE_ADMIN_PASSWORD_HASH`; the plaintext password is not stored in this repository or Railway.
+
+This public mirror is not a complete private backup. Production recovery still depends on Railway PostgreSQL backups and private media-bucket recovery procedures.
+
+## License
+
+Repository source code is available under the MIT terms in `LICENSE`. Generated
+files under `data/` and exported site content are excluded from that grant and
+remain all rights reserved.
