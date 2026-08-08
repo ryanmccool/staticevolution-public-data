@@ -1,0 +1,13 @@
+{
+    "name": "blog_photo",
+    "columns": [
+        "id",
+        "created",
+        "title",
+        "alt_text",
+        "caption",
+        "width",
+        "height"
+    ],
+    "schema": "CREATE TABLE [blog_photo] (\n   [id] INTEGER PRIMARY KEY,\n   [created] TEXT,\n   [title] TEXT,\n   [alt_text] TEXT,\n   [caption] TEXT,\n   [width] INTEGER,\n   [height] INTEGER\n)"
+}
